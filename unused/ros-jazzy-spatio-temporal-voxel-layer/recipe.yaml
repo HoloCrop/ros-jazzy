@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+source:
+  git: https://github.com/SteveMacenski/spatio_temporal_voxel_layer.git
+  rev: jazzy
+  target_directory: ros-jazzy-spatio-temporal-voxel-layer/src/work
+
+build:
+  number: 6
+
+outputs:
+  - package:
+      name: ros-jazzy-spatio-temporal-voxel-layer
+      version: 2.6.2
+    build:
+      number: 6
+      script: build.sh
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ compiler('c') }}
+        - ninja
+        - python
+        - git
+        - openvdb
+        - openvdb-tools
+        - if: unix
+          then:
+            - make
+            - coreutils
+        - cmake 3.*
+        - if: build_platform != target_platform
+          then:
+            - python
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+        - if: build_platform != target_platform
+          then:
+            - cython
+        - if: build_platform != target_platform
+          then:
+            - numpy
+        - if: build_platform != target_platform
+          then:
+            - pybind11
+      host:
+        - if: build_platform == target_platform
+          then:
+            - pkg-config
+        - python
+        - ros-jazzy-ament-cmake
+        - ros-jazzy-rosidl-default-generators
+        - ros-jazzy-builtin-interfaces
+        - ros-jazzy-nav2-costmap-2d
+        - ros-jazzy-geometry-msgs
+        - ros-jazzy-pluginlib
+        - ros-jazzy-sensor-msgs
+        - ros-jazzy-std-msgs
+        - ros-jazzy-std-srvs
+        - ros-jazzy-laser-geometry
+        - pcl
+        - vtk
+        - glm
+        - ros-jazzy-pcl-conversions
+        - ros-jazzy-rclcpp
+        - ros-jazzy-message-filters
+        - ros-jazzy-tf2-ros
+        - ros-jazzy-tf2-geometry-msgs
+        - ros-jazzy-tf2-sensor-msgs
+        - ros-jazzy-visualization-msgs
+        - ros-jazzy-ament-lint-auto
+        - ros-jazzy-openvdb-vendor
+        - mesalib
+        - openvdb
+        - tbb-devel
+      run:
+        - ros-jazzy-builtin-interfaces
+        - ros-jazzy-nav2-costmap-2d
+        - ros-jazzy-geometry-msgs
+        - ros-jazzy-pluginlib
+        - ros-jazzy-sensor-msgs
+        - ros-jazzy-std-msgs
+        - ros-jazzy-std-srvs
+        - ros-jazzy-laser-geometry
+        - pcl
+        - vtk
+        - ros-jazzy-pcl-conversions
+        - ros-jazzy-rclcpp
+        - ros-jazzy-message-filters
+        - ros-jazzy-tf2-ros
+        - ros-jazzy-tf2-geometry-msgs
+        - ros-jazzy-tf2-sensor-msgs
+        - ros-jazzy-visualization-msgs
+        - ros-jazzy-rosidl-default-runtime

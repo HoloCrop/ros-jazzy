@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-ublox-serialization
+  version: 3.0.1
+
+source:
+  git: https://github.com/KumarRobotics/ublox.git
+  rev: ros2
+  target_directory: ros-jazzy-ublox-serialization
+
+build:
+  script:
+    - build_ament_cmake.sh
+  number: 3
+about:
+  homepage: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ninja
+    - setuptools
+    - if: unix
+      then:
+        - make
+        - coreutils
+    - if: osx
+      then:
+        - tapi
+    - cmake 3.*
+    - if: build_platform != target_platform
+      then:
+        - pkg-config
+        - python
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+  host:
+    - ros-jazzy-ament-cmake

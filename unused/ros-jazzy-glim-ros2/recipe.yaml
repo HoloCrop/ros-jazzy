@@ -1,0 +1,54 @@
+context:
+  version: "1.2.0"
+
+package:
+  name: ros-jazzy-glim-ros2
+  version: ${{ version }}
+
+source:
+  git: https://github.com/koide3/glim_ros2
+  target_directory: ros-jazzy-glim-ros2
+
+build:
+  number: 2
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+    - mesa-libgl-cos7-x86_64
+  host:
+    - glm
+    - glfw
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-ament-cmake-auto
+    - ros-jazzy-rclcpp
+    - ros-jazzy-rclcpp-components
+    - ros-jazzy-tf2-ros
+    - ros-jazzy-cv-bridge
+    - ros-jazzy-geometry-msgs
+    - ros-jazzy-sensor-msgs
+    - ros-jazzy-nav-msgs
+    - ros-jazzy-image-transport
+    - ros-jazzy-rosbag2-cpp
+    - ros-jazzy-rosbag2-compression
+    - ros-jazzy-glim
+    - ros-jazzy-gtsam
+    - ros-jazzy-gtsam-points
+    - ros-jazzy-iridescence
+    - tbb-devel
+    - libboost
+    - libboost-devel
+
+about:
+  license: BSD-3-Clause
+  summary: Georgia Tech Smoothing and Mapping Library
+  description: Smoothing and mapping (SAM) in robotics and vision
+  repository: https://github.com/borglab/gtsam
+
+extra:
+  recipe-maintainers:
+    - some-maintainer

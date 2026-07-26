@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+source:
+  git: https://github.com/rospypi/rosidl_generator_mypy.git
+  rev: master
+  target_directory: ros-jazzy-rosidl-generator-mypy/src/work
+
+build:
+  number: 7
+
+  post_process:
+    - files:
+        - '*.pc'
+      regex: (?:-L|-I)?"?([^;\s]+/sysroot/)
+      replacement: $(CONDA_BUILD_SYSROOT_S)
+    - files:
+        - '*.cmake'
+      regex: ([^;\s"]+/sysroot)
+      replacement: $ENV{CONDA_BUILD_SYSROOT}
+    - files:
+        - '*.cmake'
+      regex: ([^;\s"]+/MacOSX\d*\.?\d*\.sdk)
+      replacement: $ENV{CONDA_BUILD_SYSROOT}
+
+outputs:
+  - package:
+      name: ros-jazzy-rosidl-generator-mypy
+      version: 0.1.0
+    build:
+      number: 1
+      script: build_ament_cmake.sh
+    requirements:
+      build:
+      - ${{ compiler('cxx') }}
+      - ${{ compiler('c') }}
+      - ninja
+      - setuptools
+      - make
+      - coreutils
+      - cmake 3.*
+      host:
+        - pkg-config
+        - python
+        - ros-jazzy-rclpy
+        - ros-jazzy-ament-cmake-python
+        - ros-jazzy-rosidl-default-generators
+        - ros-jazzy-rosidl-generator-py

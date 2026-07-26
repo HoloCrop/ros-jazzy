@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-ublox
+  version: 3.0.1
+
+source:
+  git: https://github.com/KumarRobotics/ublox.git
+  rev: ros2
+  target_directory: ros-jazzy-ublox
+
+build:
+  script:
+    - build_ament_cmake.sh
+  number: 5
+about:
+  homepage: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ninja
+    - setuptools
+    - if: unix
+      then:
+        - make
+        - coreutils
+    - if: osx
+      then:
+        - tapi
+    - cmake 3.*
+    - if: build_platform != target_platform
+      then:
+        - pkg-config
+        - python
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+  host:
+    - numpy
+    - pip
+    # TODO: replace with inline-if
+    - if: build_platform == target_platform
+      then:
+        - pkg-config
+    - python
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-ament-lint-auto
+    - ros-jazzy-ament-lint-common
+    - ros-jazzy-ros-environment
+    - ros-jazzy-ros-workspace
+    - ros-jazzy-rosidl-default-generators
+    - ros-jazzy-std-msgs
+
+    - asio
+    - ros-jazzy-diagnostic-msgs
+    - ros-jazzy-diagnostic-updater
+    - ros-jazzy-geometry-msgs
+    - ros-jazzy-rclcpp-components
+    - ros-jazzy-rtcm-msgs
+    - ros-jazzy-sensor-msgs
+    - ros-jazzy-tf2
+
+    # matilda build recipes
+    - ros-jazzy-nmea-msgs
+    - ros-jazzy-ublox-serialization
+    - ros-jazzy-ublox-msgs
+  run:
+    - python
+    - ros-jazzy-ros-workspace
+    - ros-jazzy-rosidl-default-runtime
+    - ros-jazzy-std-msgs
+    - if: osx and x86_64
+      then:
+        - __osx >=${{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

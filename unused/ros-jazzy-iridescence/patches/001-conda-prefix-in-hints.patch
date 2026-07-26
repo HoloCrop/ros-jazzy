@@ -1,0 +1,17 @@
+diff --git a/src/glk/path_std.cpp b/src/glk/path_std.cpp
+index 530f952..2a129d0 100644
+--- a/src/glk/path_std.cpp
++++ b/src/glk/path_std.cpp
+@@ -81,6 +81,12 @@ std::string get_data_path() {
+     std::vector<std::string> hints;
+     hints.push_back("./data");
+     hints.push_back("../data");
++
++    std::string c = getenv("CONDA_PREFIX");
++    std::string d = "/iridescence/data";
++    std::string cd = c + d;
++    hints.push_back( cd );
++    std::cout << "conda path:" << cd << std::endl;
+     
+     // Add runtime-computed install path FIRST
+     std::string runtime_path = get_library_install_path();

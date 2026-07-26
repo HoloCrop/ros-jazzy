@@ -1,0 +1,55 @@
+context:
+  version: "1.0.2"
+
+package:
+  name: ros-jazzy-iridescence
+  version: ${{ version }}
+
+source:
+  git: https://github.com/koide3/iridescence.git
+  patches:
+    - patches/001-conda-prefix-in-hints.patch
+    - patches/002-build-viewer-test.patch
+  target_directory: ros-jazzy-iridescence
+
+build:
+  number: 13
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+    - mesa-libgl-cos7-x86_64
+  host:
+    - glm
+    - glfw
+    - libjpeg-turbo
+    - fmt
+    - spdlog
+    - gtest
+    - mesa
+    - libglu 
+    - mesalib
+    - libpng 
+    - libzlib
+    - assimp
+    - libboost
+    - libboost-devel
+    - ros-jazzy-spdlog-vendor
+tests:
+  - script:
+    - printenv 
+    - viewer_test
+
+about:
+  license: BSD-3-Clause
+  summary: Georgia Tech Smoothing and Mapping Library
+  description: Smoothing and mapping (SAM) in robotics and vision
+  repository: https://github.com/borglab/gtsam
+
+extra:
+  recipe-maintainers:
+    - some-maintainer

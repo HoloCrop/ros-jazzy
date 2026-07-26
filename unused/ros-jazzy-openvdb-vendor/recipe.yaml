@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+source:
+  git: https://github.com/SteveMacenski/spatio_temporal_voxel_layer.git
+  rev: jazzy
+  target_directory: ros-jazzy-spatio-temporal-voxel-layer/src/work
+
+build:
+  number: 6
+
+outputs:
+  - package:
+      name: ros-jazzy-openvdb-vendor
+      version: 2.6.2
+    build:
+      number: 1
+      script: build_ament_cmake.sh
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ compiler('c') }}
+        - ninja
+        - python
+        - git
+        - make
+        - coreutils
+        - cmake 
+        - openvdb
+      host:
+        - ros-jazzy-ament-cmake
+        - ros-jazzy-ament-cmake-vendor-package
+        - pkg-config
+        - python
+        - tbb-devel
+        - libboost
+        - libboost-devel
+        - mesalib
+        - openvdb
+        - zlib

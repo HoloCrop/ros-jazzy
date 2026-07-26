@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-ros2-python-extension
+  version: 1.0.0
+
+source:
+  git: git@github.com:bit-bots/ros2_python_extension.git
+  target_directory: ros-jazzy-ros2-python-extension
+
+build:
+  number: 0
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+    - pkg-config
+    - python
+    - numpy
+  host:
+    - pkg-config
+    - python
+    - numpy
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-ament-cmake-auto
+    - ros-jazzy-rcl
+    - ros-jazzy-rclcpp
+
+    - ros-jazzy-pybind11-vendor
+    - ros-jazzy-geometry-msgs
+    
+    - ros-jazzy-ament-lint
+    - ros-jazzy-ament-lint-common

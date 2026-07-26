@@ -1,0 +1,45 @@
+context:
+  name: ros-jazzy-livox-ros-driver2
+  version: 1.2.6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  git: https://github.com/Livox-SDK/livox_ros_driver2.git
+  target_directory: ${{ name|lower }}
+
+build:
+  number: 1
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - cmake
+    - ninja
+    - mesa-libgl-cos7-x86_64
+    - numpy
+    - python
+  host:
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-ament-cmake-auto
+    - ros-jazzy-ament-lint-auto
+    - ros-jazzy-rosidl-default-generators
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-rclcpp
+    - ros-jazzy-rclcpp-components
+    - ros-jazzy-std-msgs
+    - ros-jazzy-sensor-msgs
+    - ros-jazzy-rcutils
+    - ros-jazzy-pcl-conversions
+    - ros-jazzy-rcl-interfaces
+    - ros-jazzy-livox-sdk2
+    - python
+    - numpy
+    - pcl
+    - git
+    - apr
+    

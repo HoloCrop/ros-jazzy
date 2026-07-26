@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-bitbots-tf-buffer
+  version: 1.0.0
+
+source:
+  git: git@github.com:bit-bots/bitbots_tf_buffer.git
+  target_directory: ros-jazzy-bitbots-tf-buffer
+
+build:
+  number: 1
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+    - pkg-config
+    - python
+    - numpy
+  host:
+    - pkg-config
+    - python
+    - numpy
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-ament-cmake-auto
+    - ros-jazzy-rcl
+    - ros-jazzy-pybind11-vendor
+    - ros-jazzy-geometry-msgs
+
+    - ros-jazzy-backward-ros
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-ros2-python-extension
+
+    - ros-jazzy-std-msgs
+    - ros-jazzy-rcl-interfaces
+    - ros-jazzy-tf2
+    - ros-jazzy-tf2-ros
+    
+    - ros-jazzy-ament-lint
+    - ros-jazzy-ament-lint-common

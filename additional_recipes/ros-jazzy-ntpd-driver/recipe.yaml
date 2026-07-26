@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-ntpd-driver
+  version: 2.3.0
+
+source:
+  git: git@github.com:vooon/ntpd_driver.git
+  rev: ros2
+  target_directory: ros-jazzy-ntpd-driver
+
+build:
+  number: 0
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+  host:
+    - poco
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-ament-cmake-auto
+    - ros-jazzy-rclcpp
+    - ros-jazzy-rclcpp-components
+    - ros-jazzy-sensor-msgs
+  run:
+    - ros-jazzy-rosidl-default-runtime

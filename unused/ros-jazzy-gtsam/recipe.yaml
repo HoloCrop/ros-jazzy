@@ -1,0 +1,38 @@
+context:
+  version: "4.3a0"
+
+package:
+  name: ros-jazzy-gtsam
+  version: ${{ version }}
+
+source:
+  git: https://github.com/borglab/gtsam.git
+  tag: 4.3a0
+  target_directory: ros-jazzy-gtsam
+
+build:
+  number: 2
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+  host:
+    - glm
+    - eigen
+    - libboost
+    - libboost-devel
+    - boost
+
+about:
+  license: BSD-3-Clause
+  summary: Georgia Tech Smoothing and Mapping Library
+  description: Smoothing and mapping (SAM) in robotics and vision
+  repository: https://github.com/borglab/gtsam
+
+extra:
+  recipe-maintainers:
+    - some-maintainer

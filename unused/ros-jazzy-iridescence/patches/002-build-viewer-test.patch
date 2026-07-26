@@ -1,0 +1,16 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d033515..d27aea5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -334,6 +334,11 @@ install(FILES
+   "${CMAKE_CURRENT_BINARY_DIR}/iridescence-config-version.cmake"
+   DESTINATION ${CMAKE_CONFIG_INSTALL_DIR}
+ )
++install(TARGETS
++  viewer_test
++  DESTINATION ${CMAKE_INSTALL_BINDIR}
++)
++install(DIRECTORY thirdparty/gl3w/KHR/ DESTINATION ${INCLUDE_INSTALL_DIR}/KHR)
+ 
+ if(BUILD_PYTHON_BINDINGS)
+   if(DEFINED SKBUILD_PROJECT_NAME)

@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-ublox-dgnss
+  version: 0.7.6
+
+source:
+  git: https://github.com/aussierobots/ublox_dgnss.git
+  rev: main
+  target_directory: ros-jazzy-ublox-dgnss
+
+build:
+  script:
+    - build_ament_cmake.sh
+  number: 5
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ninja
+    - setuptools
+    - make
+    - coreutils
+    - cmake 3.*
+  host:
+    - numpy
+    - pip
+    - pkg-config
+    - python
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-std-msgs
+    - ros-jazzy-ublox-dgnss-node
+    - ros-jazzy-ublox-nav-sat-fix-hp-node
+    - ros-jazzy-ublox-dgnss-msgs
+    - ros-jazzy-ublox-dgnss-interfaces
+  run:
+    - python
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-std-msgs
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-ublox-dgnss-node
+    - ros-jazzy-ublox-nav-sat-fix-hp-node
+    - ros-jazzy-ublox-dgnss-msgs
+    - ros-jazzy-ublox-dgnss-interfaces

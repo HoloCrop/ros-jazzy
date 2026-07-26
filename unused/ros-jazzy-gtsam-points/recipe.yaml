@@ -1,0 +1,41 @@
+context:
+  version: "1.0.4"
+
+package:
+  name: ros-jazzy-gtsam-points
+  version: ${{ version }}
+
+source:
+  git: https://github.com/koide3/gtsam_points.git
+  target_directory: ros-jazzy-gtsam-points
+
+build:
+  number: 2
+  script:
+    - build.sh
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }} 
+    - cmake 3.*
+    - ninja
+    - cuda 12.9.*
+  host:
+    - glm
+    - tbb-devel
+    - eigen
+
+    - cuda 12.9.*
+    - libboost
+    - libboost-devel
+    - ros-jazzy-gtsam
+
+about:
+  license: BSD-3-Clause
+  summary: Georgia Tech Smoothing and Mapping Library
+  description: Smoothing and mapping (SAM) in robotics and vision
+  repository: https://github.com/koide3/gtsam_points
+
+extra:
+  recipe-maintainers:
+    - some-maintainer
