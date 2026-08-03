@@ -5,8 +5,8 @@ package:
   version: 3.0.1
 
 source:
-  git: https://github.com/KumarRobotics/ublox.git
-  rev: ros2
+  git: https://github.com/nim65s/ublox.git
+  branch: asio136
   target_directory: ros-jazzy-ublox
 
 build:
