@@ -1,0 +1,16 @@
+
+rm -rf build
+mkdir build
+cd build
+
+export CMAKE_BUILD_PARALLEL_LEVEL=4
+cmake \
+  -G "Ninja" \
+  -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DBUILD_SHARED_LIBS=ON  \
+  -DCMAKE_INSTALL_LIBDIR=lib \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_WITH_CUDA=ON \
+  -DBUILD_WITH_CUDA_MULTIARCH=ON \
+  $SRC_DIR/$PKG_NAME
+ninja install

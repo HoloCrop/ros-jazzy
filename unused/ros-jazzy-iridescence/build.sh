@@ -1,0 +1,17 @@
+
+rm -rf build
+mkdir build
+cd build
+
+cmake \
+  -G "Ninja" \
+  -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DCMAKE_PREFIX_PATH=$PREFIX \
+  -DCMAKE_INSTALL_DATADIR=$PREFIX \
+  -DCMAKE_INSTALL_FULL_DATADIR=$PREFIX/iridescence/data \
+  -DBUILD_SHARED_LIBS=ON  \
+  -DCMAKE_INSTALL_LIBDIR=lib \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DBUILD_EXT_TESTS=ON \
+  $SRC_DIR/$PKG_NAME
+ninja install
