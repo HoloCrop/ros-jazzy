@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+
+package:
+  name: ros-jazzy-ublox-dgnss-ntrip-node
+  version: 0.7.6
+
+source:
+  git: https://github.com/aussierobots/ublox_dgnss.git
+  rev: main
+  target_directory: ros-jazzy-ublox-dgnss-ntrip-node
+
+build:
+  script:
+    - build_ament_cmake.sh
+  number: 5
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ninja
+    - setuptools
+    - make
+    - coreutils
+    - cmake 3.*
+  host:
+    - pkg-config
+    - libcurl
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-rclcpp-components
+    - ros-jazzy-std-msgs
+    - ros-jazzy-rtcm-msgs
+  run:
+    - pkg-config
+    - libcurl
+    - ros-jazzy-ament-cmake
+    - ros-jazzy-builtin-interfaces
+    - ros-jazzy-rclcpp-components
+    - ros-jazzy-std-msgs
+    - ros-jazzy-rtcm-msgs
